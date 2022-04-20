@@ -21,7 +21,7 @@ console.log('boom! test data', celToFerData, ferToCelData);
 
 // configure the model
 const config = {
-    epochs: 5000,
+    epochs: 15,
     loss: 'meanSquaredError',
     optimizer: tf.train.adam(0.1)
 }
@@ -29,10 +29,15 @@ const model = tf.sequential();
 model.add(tf.layers.dense({
     inputShape: [1],
     activation: 'sigmoid',
-    units: 2
+    units: 5
 }));
 model.add(tf.layers.dense({
-    inputShape: [2],
+    inputShape: [5],
+    activation: 'sigmoid',
+    units: 3
+}));
+model.add(tf.layers.dense({
+    inputShape: [3],
     activation: 'sigmoid',
     units: 1
 }));
@@ -52,18 +57,22 @@ for (let entry of celToFerData) {
     training.labels.push([entry.f]);
 }
 
+function onEpochEnd(data, logs) {
+    console.log("epoc ended!", data, logs);
+}
 // train && predict the things!
 model.fit(
     tf.tensor(training.inputs),
     tf.tensor(training.labels),
     {
-        epochs: config.epochs
+        epochs: config.epochs,
+        callbacks: { onEpochEnd }
     }).then((res) => {
         console.log("done!", res);
         const prediction = model.predict(tf.tensor([40]));
         const predictionPromise = prediction.data();
 
         predictionPromise.then((result) => {
-            console.log(result);
+            console.log("40 cel => fer ",result[0] * 100);
         });
     });
