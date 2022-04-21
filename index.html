@@ -10,6 +10,12 @@
 </head>
 
 <body class="row">
+    <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="phone">
+        <label class="mdl-textfield__label" for="phone">Enter Celsius</label>
+        <span class="mdl-textfield__error">Digits only</span>
+    </div>
+    <button onclick="app.predict()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"> Convert </button>
 </body>
 <script src="./material.min.js"></script>
 <script src="./app.js"></script>

@@ -9,7 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "dependencies": {
-    "@tensorflow/tfjs": "^2.7.0"
+    "@tensorflow/tfjs": "^2.7.0",
+    "@tensorflow/tfjs-vis": "^1.5.1"
   }
 }
