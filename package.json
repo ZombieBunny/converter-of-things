@@ -15,5 +15,8 @@
   "dependencies": {
     "@tensorflow/tfjs": "^2.7.0",
     "@tensorflow/tfjs-vis": "^1.5.1"
+  },
+  "devDependencies": {
+    "parcel": "1.12.3"
   }
 }
